@@ -7,7 +7,8 @@ This GitHub is dedicated to the tools to perform N-body simulation in the MOND d
 
 ### init_conditions:
 
-Contain code to generate particles used in N-body simulation. Read the README file for each code.
+Contain codes to generate particles used in N-body simulations.
+Read the README file for each code to know how to use it.
 
 *Contain :*
 
