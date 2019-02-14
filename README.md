@@ -14,3 +14,4 @@ Contain code to generate particles used in N-body simulation. Read the README fi
 - king_sphere : Model to create a self consistent King sphere. Develloped by G. F. Thomas
 
 
+
