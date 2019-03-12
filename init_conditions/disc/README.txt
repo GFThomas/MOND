@@ -64,7 +64,7 @@ cd ..
 Compile & Install
 You can checkout the latest version in the Git repository typing:
 
-git clone https://github.com/GFThomas/MOND/init_conditions/dice
+git clone https://github.com/GFThomas/MOND/init_conditions/disk
 
 The DICE package comes with the CMake cross-platform build system. So technically, you don’t have to worry so much about the compilation. Make sure you have cmake installed by typing:
 
@@ -107,5 +107,8 @@ git pull
 
 Reference:
 http://adsabs.harvard.edu/abs/2016ascl.soft07002P
+
+The QUMOND analogue of the Toomre disk stability condition is obtained from https://arxiv.org/abs/1808.10545.
+The algorithm is based on applying QUMOND via the algebraic MOND approximation. The critical MOND adjustments are in the dice_vel.c file.
 
 For queries, please contact Indranil Banik at indranilbanik1992@gmail.com.
