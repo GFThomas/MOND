@@ -64,14 +64,14 @@ cd ..
 Compile & Install
 You can checkout the latest version in the Git repository typing:
 
-git clone https://github.com/GFThomas/MOND/init_conditions/dice
+git clone https://github.com/GFThomas/MOND/init_conditions/disc
 
 The DICE package comes with the CMake cross-platform build system. So technically, you don’t have to worry so much about the compilation. Make sure you have cmake installed by typing:
 
 cmake --version
 If your version is older than cmake 2.6, you will have to update your system to a more recent version of cmake. To generate the makefile, type:
 
-cd dice
+cd disc
 mkdir build
 cd build
 cmake ..
@@ -79,7 +79,7 @@ If no errors are detected through this step, compile the code and install the co
 make
 make install
 
-By default, DICE is installed in $HOME/local/dice, but you can specify a different installation directory using the flag -DCMAKE_INSTALL_PREFIX=/install/path.
+By default, DICE is installed in $HOME/local/disc, but you can specify a different installation directory using the flag -DCMAKE_INSTALL_PREFIX=/install/path.
 A cmake macro is implemented to locate standard installations of the required libraries. Nevertheless, if you installed them in a different way, use the following keywords to help cmake locating these libraries:
 cmake .. -DGSL_PATH=/path/to/gsl -DFFTW3_PATH=/path/to/fftw3 -DFFTW3_THREADS_PATH=/path/to/fftw3_threads
 
@@ -99,7 +99,7 @@ CMake will automatically look for the fftw3_threads library, and link it. Compil
 If you have some errors referring to unknown reference _intel_fast_memset_, it probably means that FFTW was compiled with intel icc compiler with specific optimisation flags. Thus, you will need icc to compile DICE.
 
 If you want to get the latest version in the Git repository, just type:
-cd /path/to/dice
+cd /path/to/dice (which should be home/disc)
 git pull
 
 
