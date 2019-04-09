@@ -62,9 +62,10 @@ make install
 cd ..
 
 Compile & Install
-You can checkout the latest version in the Git repository ny typing:
+You can checkout the latest version in the Git repository by typing:
 
-git clone https://github.com/GFThomas/MOND/init_conditions/disc
+git clone https://github.com/GFThomas/MOND.git
+Please then cut the disc subfolder in the init_conditions folder and paste it into your home directory. You may then delete the MOND folder if you wish.
 
 The DICE package comes with the CMake cross-platform build system. So technically, you don’t have to worry so much about the compilation. Make sure you have cmake installed by typing:
 
