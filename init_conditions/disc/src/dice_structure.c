@@ -961,31 +961,34 @@ void mcmc_metropolis_hasting_ntry(galaxy *gal, int component, int density_model)
                         //prop_r[k] = gal->r_cyl[i-1] + gsl_ran_gaussian(r[0],step_r);
                         prop_theta[k] = 2.0*pi*gsl_rng_uniform_pos(r[0]);
                         //prop_r[k] = r_outer_limit*gsl_rng_uniform_pos(r[0]); //Remember we've changed r and z here.
-                        prop_r[k] = Disk_length_by_alpha_IB*acosh(exp(gsl_rng_uniform_pos(r[0])*u_max));
-                        //For equal mass particles: replace above line with block below.
-                        /*randval = gsl_rng_uniform_pos(r[0]);
-                        if(randval > 0.5) {
-                            u = sqrt(2.0*(1.0 - randval));
+                        //For equal/unequal mass particles: change params file.
+                        if (gal->eqmass == 1) {
+                            randval = gsl_rng_uniform_pos(r[0]);
+                            if(randval > 0.5) {
+                                u = sqrt(2.0*(1.0 - randval));
+                            } else {
+                                u = -log(randval);
+                                u = u + log(u + 1.0);
+                            }
+
+                            for(j = 0; j < Max_steps_NR; j++) {
+                                Exp_minus_u = exp(-u);
+                                Gradient = u*Exp_minus_u;
+                                Error = randval - Gradient - Exp_minus_u;
+                                if(abs(Error) < Tolerance_NR) break;
+                                u = u - Error/Gradient;
+                            }
+
+                            if(Gradient > Tolerance_NR) u = u - Error/Gradient;
+
+                            if(abs(Error) > 10.0*Tolerance_NR) {
+                                puts("Algorithm failed to converge.");
+                                exit(0);
+                            }
+                            prop_r[k] = Disk_length*u;
                         } else {
-                            u = -log(randval);
-                            u = u + log(u + 1.0);
+                            prop_r[k] = Disk_length_by_alpha_IB*acosh(exp(gsl_rng_uniform_pos(r[0])*u_max));
                         }
-
-                        for(j = 0; j < Max_steps_NR; j++) {
-                            Exp_minus_u = exp(-u);
-                            Gradient = u*Exp_minus_u;
-                            Error = randval - Gradient - Exp_minus_u;
-                            if(abs(Error) < Tolerance_NR) break;
-                            u = u - Error/Gradient;
-                        }
-
-                        if(Gradient > Tolerance_NR) u = u - Error/Gradient;
-
-                        if(abs(Error) > 10.0*Tolerance_NR) {
-                           puts("Algorithm failed to converge.");
-                           exit(0);
-                        }
-                        prop_r[k] = Disk_length*u;*/
 
                         prop_z[k] = Disk_height*atanh(2.0*gsl_rng_uniform_pos(r[0]) - 1);
                         //prop_z[k] = gal->z[i-1] + gsl_ran_gaussian(r[0],step_z);
@@ -1186,15 +1189,18 @@ void mcmc_metropolis_hasting_ntry(galaxy *gal, int component, int density_model)
         x = gal->x[i];
         y = gal->y[i];
         //l = sqrt(pow(x/hx,2)+pow(y/hy,2));
-        //For equal mass particles: Replace block below with gal->w[i] = 1.0, thus no need to calculate l.
-        //gal->w[i] = 1.0;
-        l = sqrt(x*x + y*y)*Disk_length_inv;
-        if(l > 0.001){
-            gal->w[i] = gal->comp_mass_frac[component]/gal->comp_npart[component]*l/tanh(alpha_IB*l)*exp(-l); //gal->comp_npart[i]
+        //For equal/unequal mass particles: change params file.
+        if (gal->eqmass == 1) {
+            gal->w[i] = 1.0;
         } else {
-            gal->w[i] = gal->comp_mass_frac[component]/gal->comp_npart[component]*(1.0 + l*(-1.0 + l*(0.5 + Third_alpha_IB_sq - l*(1.0/6.0 + Third_alpha_IB_sq))));
+            l = sqrt(x*x + y*y)*Disk_length_inv;
+            if(l > 0.001){
+                gal->w[i] = gal->comp_mass_frac[component]/gal->comp_npart[component]*l/tanh(alpha_IB*l)*exp(-l); //gal->comp_npart[i]
+            } else {
+                gal->w[i] = gal->comp_mass_frac[component]/gal->comp_npart[component]*(1.0 + l*(-1.0 + l*(0.5 + Third_alpha_IB_sq - l*(1.0/6.0 + Third_alpha_IB_sq))));
+            }
+            if (gal->w[i] < 0.0) printf("Negative values at i = %5.1d", i);
         }
-        if (gal->w[i] < 0.0) printf("Negative values at i = %5.1d", i);
 
         // Updating the coordinate values
         //puts("IB altered azimuthal angle of particles."); //Line is actually executed, so do not run it.
