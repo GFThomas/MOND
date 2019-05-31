@@ -3691,6 +3691,7 @@ int copy_galaxy(galaxy *gal_1, galaxy *gal_2, int info) {
     gal_2->total_mass = gal_1->total_mass;
     // gal_2->gfrac = gal_1->gfrac;
     // gal_2->gtemp = gal_1->gtemp;
+    gal_2->eqmass = gal_1->eqmass;
 
     if(allocate_component_arrays(gal_2)!=0) {
         fprintf(stderr,"Allocation of component arrays failed\n");
