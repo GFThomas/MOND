@@ -114,8 +114,8 @@
 #define r_outer_limit_comp9     43.
 #define r_outer_limit_comp10    43.
 #define tanh_2                  0.9640275801 //Used to adjust MOND nu function near the disk mid-plane. Can use e.g. tanh_2 = tanh(3) instead.
-#define Galaxy_name_single      "Milky_Way"
-#define Galaxy_name_multiple    "Andromeda"
+#define Galaxy_name_single      "Andromeda"
+#define Galaxy_name_multiple    "Milky_Way"
 
 // Global variables for the GSL random number environment.
 const gsl_rng_type *T;
@@ -289,6 +289,7 @@ typedef struct {
     double m200;
     double gfrac;
     double gtemp;
+    int eqmass;
     double s200;
     // Total angular momentum within R200
     double J200;
