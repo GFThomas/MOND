@@ -6,6 +6,7 @@ v200 				200.0 # Virial velocity of the galaxy [km/s]
 # Overrides the v200 parameter
 m200				8.4
 #M31 = 19.6, MW = 8.4, M_MW/M_M31 = 3/7. (Old: 19.67, 8.43).
+Equal_mass_particles 1
 # Halo spin parameter
 lambda		 	        0.04
 # Refinement level of the potential grid 
