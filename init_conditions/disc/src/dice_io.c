@@ -517,6 +517,13 @@ int parse_galaxy_file(galaxy *gal, char *fname) {
     mandatory[nt] = 0;
     id[nt++] = DOUBLE;
 
+    strcpy(tag[nt], "Equal_mass_particles");
+    gal->eqmass = 0;
+    addr[nt] = &gal->eqmass;
+    read[nt] = 0;
+    mandatory[nt] = 0;
+    id[nt++] = INT;
+
     strcpy(tag[nt], "lambda");
     gal->lambda = 0.;
     addr[nt] = &gal->lambda;
@@ -2301,7 +2308,7 @@ int write_gadget2_ics(galaxy *gal, char *fname) {
                 if(gal->comp_npart[1]>0) strcpy(outfilename, Galaxy_name_multiple);
                 else strcpy(outfilename, Galaxy_name_single);
                 //strcpy(outfilename, Galaxy_name);
-                strcat(outfilename, "_output_p");
+                strcat(outfilename, "_out_star_p");
             	sprintf(ptype_str, "%d", ptype);
             	sprintf(k_str, "%d", k);
             	strcat(outfilename, ptype_str);
