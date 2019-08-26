@@ -1,0 +1,39 @@
+'../Simulation_output_folder/'	Relative path to folder containing the RAMSES simulation output
+45		 		Output No. (negative for all up to there, e.g. '-100' means all from 1 to 100)
+16				Number of CPU threads used for the RAMSES simulation
+-1				Update mode (-1:overwrite old, 0:skip existing files, 1:continue and renumber (best avoid))
+0				COM reset (0:none, 1:pos, 2:vel, 3:both, negative:same, first run only)
+1				sort mode (0:none, 1:ascending in order of RAMSES particle ID)
+0				skip mode (0 or 1: print all particles, n>1 writes only every nth particle)
+1.				scale xyz
+65.59266			scale uvw (system v to km/s; 65.59266 10^9 Msun, kpc, 2.0738918e-3 for Msun, kpc)
+1.e9				scale m
+1.393868e-10	-14.90704	scale accelerations, scale birth time (<=0 for off)
+.false.				whether accelerations input block exits
+0.	0.	0.		rotate (degrees zxz)
+---- ANALYSIE BASIC PARAMS ----
+0	2			analysis mode(0:only convert; 1:only analyse, >1:do both, <0:do neither [e.g. just image]); vol dim
+1	200000			split dm and star particles, dm part number
+---- RADIAL BINNING SECTION ----
+50.	500		    	binning radius (in system units), nbins
+000.	000.	000.	    	binning center (RAMSES has box centre at half boxlength in each dimension, but this has been subtracted)
+1000.	0	1.	    	RAMSES boxlength,trim box(only if box is used),trim length
+0	1		    	use half boxlength as box center, apply COM correction for binning
+---- PARTIAL COM SECTION ----
+0	0.005	100.		use (only if analysis mode >=1),fraction for density center mode, stepsize Myr (only for tabulation)
+1170000	554000	243000		n1,n2,n3
+1000				nstat (only for status line output)
+---- Image params ----
+0	0	0		flgimage (1:gray, 2:rgb, 3:rgbw, <=0:off), edgemode  (1:x-z (=edge-on), >=2:y-z, else:x-y (=face-on)),bin mode (0:N, 1:m, 2:age)
+-1000.	2.	0	0.04	age threshold (only stars younger than this; <=0 for off), age weighting exponent (experimental), age kernel spreading (experimental)
+0	0			imagecenter
+1000	1000			image width
+1000	1000			nbx,nby
+1	1			hx,hy smoothing (pixel units)
+-1024000			skip first n particles (xy binning only)
+0.4	255.	-1.		rgb level rescaling factor,rgbclip,rgb extra-gamma
+---- Lagrange quantiles ----
+0.25
+0.50
+0.75
+-1.
