@@ -2,7 +2,7 @@
 
 Download instructions:
 git clone https://github.com/GFThomas/MOND.git
-Please then cut the extract folder and paste it into another directory of your choice. You may then delete the MOND folder if you wish.
+Please then cut the extract_por folder and paste it into another directory of your choice. You may then delete the MOND folder if you wish.
 
 Files inside TAR archive (algorithm consists of the following 17 files):
 
