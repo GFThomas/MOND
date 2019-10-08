@@ -19,7 +19,7 @@ contains
 
   subroutine read_data(filename)
     integer :: i
-    character(len=80) :: filename
+    character(len=200) :: filename
     open(15,file=trim(filename))
     call nextline(15)
     ndata=0
