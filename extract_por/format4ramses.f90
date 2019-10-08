@@ -13,7 +13,7 @@ module format4ramses
 contains
 
   subroutine read_ramses_info(infofile)
-    character(len=80) :: infofile
+    character(len=200) :: infofile
     character(len=15) :: chdum
     real(kind=8) :: tsu
     integer :: i,iu=98
@@ -34,7 +34,7 @@ contains
   end subroutine read_ramses_info
 
   subroutine read_ramses_part(fileid,nthreads,nptot,all_part,id_part)
-    character(len=80) :: fileid,infile
+    character(len=200) :: fileid,infile
     character(len=5) :: nchar
     integer :: i,j,iu,ithread,nthreads,ndata,ndim,idum,npart,ierr
     integer :: nptot
@@ -53,6 +53,7 @@ contains
        open(iu,file=trim(infile),form='unformatted',status='old',iostat=ierr)
        if (ierr/=0) then
           close(iu)
+          print '(a,a,a)','Error wile opening file "',trim(infile),'"'
           print '(a,i2.2,a,i2)','iu',iu,': ierr =',ierr
           call close_program
 !          exit
@@ -94,7 +95,7 @@ contains
 !             read(iu) all_part(j+3,i+nptot)
              all_part(j+3,i+nptot)=xdp(i)*scalv
           enddo
-       enddo
+       enddoprint '(a,a,a)','Error wile opening file "',trim(infile),'"'
 !       print *,'scalv =',scalv
 ! accelerations !NEW!
        if (existacc) then
@@ -134,7 +135,7 @@ contains
 7      continue
        !print *,'End of file --> close'
        goto 9
-8      print *,'File read error -->close'
+8      print *,'File read erprint '(a,a,a)','Error wile opening file "',trim(infile),'"'ror -->close'
 9      close(iu)
        nptot=nptot+npart
        print *,'Read thread No.',ithread,'; particle number so far:',nptot, ' (added ',npart,')'
@@ -145,7 +146,7 @@ contains
   end subroutine read_ramses_part
 
   subroutine write_ramses_part(outfile,gpauxfile,nptot,all_part,id_part)
-    character(len=80) :: outfile,gpauxfile
+    character(len=200) :: outfile,gpauxfile
     character(len=5) :: nchar
     integer :: i,j,ii,ndim,idum
     integer :: nptot
