@@ -10,7 +10,7 @@
     integer :: update_mode,n1,n2,n3,nthreads,iucompart=55,iutimes=56,iulagrange=57,nstat,idum
     character(len=5) :: ncharin,ncharout,ncharx
     character(len=30) :: parfile
-    character(len=80) :: fmain,fpath,fnametrunc,infofile,xfile,outfile,gpauxfile,&
+    character(len=200) :: fmain,fpath,fnametrunc,infofile,xfile,outfile,gpauxfile,&
          radialfile,rlagrangefile,imagefile
     integer,parameter :: nmax=5001000
     real(kind=8) :: dt=1.d2,frac,adeg,bdeg,cdeg,rdum
