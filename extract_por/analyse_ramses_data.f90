@@ -142,8 +142,8 @@
                 cycle
              endif
           endif
+          call read_ramses_info(infofile,nthreads,ncharin)
           call read_ramses_part(fnametrunc,nthreads,nptot,all_part,id_part)
-          call read_ramses_info(infofile)
 !          if (flg_splitpops>=1) then
           !this re-writes id_part!
           call split_populations(nptot,all_part,id_part)
