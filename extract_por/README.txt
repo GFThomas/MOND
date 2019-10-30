@@ -38,7 +38,7 @@ The results are also written in this folder.
 Basic options in the parameter file which may be frequently changed (line number of parameter file given at start):
 1  Relative path to RAMSES simulation output folder (use '.' if same folder)
 2  Output No. (negative for all up to there, e.g. '-45' means all from 1 to 45). Using e.g. 45 will extract just snapshot 45, or however many snapshots there are (if this is <45).
-3  Number of CPU threads used by RAMSES during the simulation
+3  Number of CPU threads used by RAMSES during the simulation (leave at <= 0 for automatic detection)
 ...(Other options described in parameters file)
 8  Scale position unit (PoR output is multiplied by this factor)
 9  Scale velocity unit (as above)
